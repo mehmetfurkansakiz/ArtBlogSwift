@@ -34,6 +34,8 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
         view.endEditing(true)
     }
     
+    // MARK: - Picker
+    
     @objc func imageViewTapped() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
@@ -83,7 +85,10 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
         }catch {
             print("Error")
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
+        self.navigationController?.popViewController(animated: true)
+        
     }
-    
 
 }
