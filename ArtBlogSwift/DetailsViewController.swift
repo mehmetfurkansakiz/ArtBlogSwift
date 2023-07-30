@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import CoreData
 
 class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
 
@@ -57,6 +58,31 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let newPainting = NSEntityDescription.insertNewObject(forEntityName: "Paintings", into: context)
+        
+        
+        // MARK: - Attributes:
+        
+        newPainting.setValue(nameText.text!, forKey: "name")
+        newPainting.setValue(artistText.text!, forKey: "artist")
+        
+        if let year = Int(yearText.text!) {
+            newPainting.setValue(year, forKey: "year")
+        }
+        
+        newPainting.setValue(UUID(), forKey: "id")
+        
+        let data = imageView.image!.jpegData(compressionQuality: 0.5)
+        
+        do {
+            try context.save()
+            print("Success")
+        }catch {
+            print("Error")
+        }
     }
     
 
