@@ -15,6 +15,7 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var artistText: UITextField!
     @IBOutlet weak var yearText: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     var chosenPainting = ""
     var chosenPaintingID : UUID?
@@ -24,6 +25,9 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
         super.viewDidLoad()
         
         if chosenPainting != "" {
+            
+            saveButton.isEnabled = false
+            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Paintings")
@@ -57,6 +61,8 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
             } catch {
                 
             }
+        } else {
+            saveButton.isEnabled = false
         }
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -95,6 +101,7 @@ class DetailsViewController: UIViewController, PHPickerViewControllerDelegate {
                 }
             }
         }
+        self.saveButton.isEnabled = true
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {

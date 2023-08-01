@@ -111,6 +111,7 @@
                         <outlet property="artistText" destination="PPT-yt-8YX" id="nhs-Db-NaM"/>
                         <outlet property="imageView" destination="sui-kQ-xGW" id="0sd-qc-qYr"/>
                         <outlet property="nameText" destination="BhE-DX-pS2" id="Iwz-ko-XSu"/>
+                        <outlet property="saveButton" destination="jnh-CH-B4k" id="ggb-vU-Ky5"/>
                         <outlet property="yearText" destination="H1H-BB-hQF" id="ToX-eX-aIj"/>
                     </connections>
                 </viewController>
